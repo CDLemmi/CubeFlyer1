@@ -24,7 +24,7 @@ public:
 	
 	void handleMouse(double offsetX, double offsetY);
 	void handleKey(int key, int action);
-	void step();
+	void step(double dt);
 	void printPos();
 	void printPressed();
 	glm::vec3 getPos();

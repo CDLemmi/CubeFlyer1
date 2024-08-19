@@ -12,41 +12,41 @@ const int KEY_RIGHT = GLFW_KEY_D;
 const int KEY_UP = GLFW_KEY_SPACE;
 const int KEY_DOWN = GLFW_KEY_LEFT_SHIFT;
 
-const double MOVE_SPEED = 0.001;
+const double MOVE_SPEED = 3.0;
 const double MOUSE_SENSI = 0.002;
 
 Player::Player()
-	: angleHor(0), angleVer(0), posX(0), posY(0)
+	: angleHor(0), angleVer(0.5*PI), posX(0), posY(-5), posZ(0)
 {
 }
 
-void Player::step() {
+void Player::step(double dt) {
 	if (pressedForward) {
-		posX += sin(angleHor) * MOVE_SPEED;
-		posY += cos(angleHor) * MOVE_SPEED;
+		posX += sin(angleHor) * MOVE_SPEED * dt;
+		posY += cos(angleHor) * MOVE_SPEED * dt;
 	}
 
 	if (pressedRight) {
-		posX += -cos(angleHor) * MOVE_SPEED;
-		posY += sin(angleHor) * MOVE_SPEED;
+		posX += -cos(angleHor) * MOVE_SPEED * dt;
+		posY += sin(angleHor) * MOVE_SPEED * dt;
 	}
 
 	if (pressedLeft) {
-		posX += cos(angleHor) * MOVE_SPEED;
-		posY += -sin(angleHor) * MOVE_SPEED;
+		posX += cos(angleHor) * MOVE_SPEED * dt;
+		posY += -sin(angleHor) * MOVE_SPEED * dt;
 	}
 
 	if (pressedBack) {
-		posX += -sin(angleHor) * MOVE_SPEED;
-		posY += -cos(angleHor) * MOVE_SPEED;
+		posX += -sin(angleHor) * MOVE_SPEED * dt;
+		posY += -cos(angleHor) * MOVE_SPEED * dt;
 	}
 
 	if (pressedUp) {
-		posZ += MOVE_SPEED;
+		posZ += MOVE_SPEED * dt;
 	}
 	
 	if (pressedDown) {
-		posZ -= MOVE_SPEED;
+		posZ -= MOVE_SPEED * dt;
 	}
 
 	angleHor -= turnHor * MOUSE_SENSI;
@@ -122,6 +122,7 @@ void Player::printPos() {
 	std::cout << "current player position:"
 		<< " x=" << roundDouble(posX)
 		<< ";y=" << roundDouble(posY)
+		<< ";z=" << roundDouble(posZ)
 		<< ";angleHor=" << roundDouble(angleHor)
 		<< ";angleVer=" << roundDouble(angleVer)
 		<< std::endl;

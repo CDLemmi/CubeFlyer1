@@ -11,7 +11,8 @@ FpsCounter::FpsCounter()
         .count();
 }
 
-void FpsCounter::incCounter() {
+//returns time since last 
+double FpsCounter::incCounter() {
     long long time = std::chrono::duration_cast<std::chrono::milliseconds>(
                 std::chrono::system_clock::now().time_since_epoch())
                 .count();
@@ -26,5 +27,6 @@ void FpsCounter::incCounter() {
         framesCounter = 0;
         timeSinceLastPrint %= 1000;
     }
+    return (double)duration/1000;
 }
 

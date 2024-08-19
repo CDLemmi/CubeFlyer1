@@ -9,7 +9,7 @@ private:
 public:
 	FpsCounter();
 
-	void incCounter();
+	double incCounter();
 
 
 };

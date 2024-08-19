@@ -106,9 +106,10 @@ int main() {
 	while (!glfwWindowShouldClose(window)) {
 		glClear(GL_COLOR_BUFFER_BIT);
 
+		double dt = fpsCounter.incCounter();
 
-		player.printPos();
-		player.step();
+		//player.printPos();
+		player.step(dt);
 		auto pos = player.getPos();
 		auto rot = player.getRot();
 
@@ -121,7 +122,6 @@ int main() {
 			std::cout << "[OpenGL Error] (" << std::hex << error << "): " << std::endl;
 		}
 
-		//fpsCounter.incCounter();
 		glfwPollEvents();
 	}
 
