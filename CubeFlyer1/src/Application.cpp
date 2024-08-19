@@ -69,7 +69,7 @@ int main() {
 
 	glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
 
-	GLFWwindow* window = glfwCreateWindow(800, 800, "Cube Flyer 1", NULL, NULL);
+	GLFWwindow* window = glfwCreateWindow(1280, 720, "Cube Flyer 1", NULL, NULL);
 	if (window == NULL) {
 		std::cout << "Error: Failed to create window" << std::endl;
 		glfwTerminate();
