@@ -95,7 +95,10 @@ CubeRenderer::CubeRenderer()
 
 	glUseProgram(shaderProgram);
 
-	
+
+	projUniform = glGetUniformLocation(shaderProgram, "proj");
+	rotUniform = glGetUniformLocation(shaderProgram, "rot");
+	transUniform = glGetUniformLocation(shaderProgram, "trans");
 }
 
 void CubeRenderer::render(glm::vec3 pos, glm::mat4 rot)
@@ -110,10 +113,11 @@ void CubeRenderer::render(glm::vec3 pos, glm::mat4 rot)
 		100.0f
 	);
 
-	proj =  proj * rot * trans ;
 
-	int uniform = glGetUniformLocation(shaderProgram, "proj");
-	glUniformMatrix4fv(uniform, 1, GL_FALSE,&(proj[0][0]));
+	glUniformMatrix4fv(projUniform, 1, GL_FALSE, &(proj[0][0]));
+	glUniformMatrix4fv(rotUniform, 1, GL_FALSE, &(rot[0][0]));
+	glUniformMatrix4fv(transUniform, 1, GL_FALSE, &(trans[0][0]));
+
 
 	glDrawElements(GL_LINES, 24, GL_UNSIGNED_INT, 0);
 	/*

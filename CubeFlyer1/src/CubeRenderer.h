@@ -10,6 +10,10 @@ private:
 	uint vertexBuffer;
 	uint vertexArray;
 
+	int projUniform;
+	int transUniform;
+	int rotUniform;
+
 	float vertices[24] = {
 		 0.5f,  0.5f,  0.5f,
 		 0.5f,  0.5f, -0.5f,
